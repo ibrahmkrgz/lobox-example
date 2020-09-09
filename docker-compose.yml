@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  dev:
+    env_file:
+      - .env
+    image: node:14.8.0-alpine
+    container_name: ${PROJECT_NAME}
+    build:
+      context: .
+      dockerfile: ./config/docker/dev.Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    command: yarn start
+    ports:
+      - ${PORT}:${PORT}
+    tty: true
+    stdin_open: true
+    init: true
+  prod:
+    env_file:
+      - .env
+    image: nginx:1.18.0
+    build:
+      context: .
+      dockerfile: ./config/docker/prod.Dockerfile
+    ports:
+      - '8080:80'
+    environment:
+      - NGINX_HOST=lobox.dev
+      - NGINX_PORT=80

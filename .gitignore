@@ -1,0 +1,9 @@
+node_modules
+.vscode
+.idea
+npm-error*
+yarn-error*
+build
+.DS_Store
+.env
+.npmrc

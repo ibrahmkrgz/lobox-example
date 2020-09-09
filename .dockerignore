@@ -1,0 +1,9 @@
+node_modules
+build
+.idea
+.vscode
+.DS_Store
+.dockerignore
+Dockerfile
+npm-error*
+yarn-error*
